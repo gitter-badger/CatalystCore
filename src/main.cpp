@@ -2753,7 +2753,7 @@ bool RecalculateCONDOMINIUMSupply(int nHeightStart)
     return true;
 }
 
-bool ReindexAccumulators(list<uint256> listMissingCheckpoints, string& strError)
+bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError)
 {
     // PIVX: recalculate Accumulator Checkpoints that failed to database properly
     if (!listMissingCheckpoints.empty() && chainActive.Height() >= Params().Zerocoin_StartHeight()) {
@@ -4223,7 +4223,7 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
         pindexPrev = (*mi).second;
          if (pindexPrev->nStatus & BLOCK_FAILED_MASK) {
             //If this "invalid" block is an exact match from the checkpoints, then reconsider it
-            if (Checkpoints::CheckBlock(pindex->nHeight - 1, block.hashPrevBlock, true)) {
+            if (pindex && Checkpoints::CheckBlock(pindex->nHeight - 1, block.hashPrevBlock, true)) {
                 LogPrintf("%s : Reconsidering block %s height %d\n", __func__, pindexPrev->GetBlockHash().GetHex(), pindexPrev->nHeight);
                 CValidationState statePrev;
                 ReconsiderBlock(statePrev, pindexPrev);
@@ -4579,7 +4579,7 @@ CBlockIndex* InsertBlockIndex(uint256 hash)
     return pindexNew;
 }
 
-bool static LoadBlockIndexDB()
+bool static LoadBlockIndexDB(string& strError)
 {
     if (!pblocktree->LoadBlockIndexGuts())
         return false;
@@ -4664,8 +4664,8 @@ bool static LoadBlockIndexDB()
         //the block index database.
 
         if (!mapBlockIndex.count(pcoinsTip->GetBestBlock())) {
-            uiInterface.ThreadSafeMessageBox("Transaction database does not match the block database. Restart using -reindex.", "", CClientUIInterface::MSG_ERROR);
-            abort();
+            strError = "The wallet has been not been closed gracefully, causing the transaction database to be out of sync with the block database";
+            return false;
         }
         LogPrintf("%s : pcoinstip synced to block height %d, block index height %d\n", __func__, mapBlockIndex[pcoinsTip->GetBestBlock()]->nHeight, vSortedByHeight.size());
          //get the index associated with the point in the chain that pcoinsTip is synced to
@@ -4680,10 +4680,15 @@ bool static LoadBlockIndexDB()
             }
         }
 
+         // Start at the last block that was successfully added to the txdb (pcoinsTip) and manually add all transactions that occurred for each block up until
+        // the best known block from the block index db.
         CCoinsViewCache view(pcoinsTip);
         while (nSortedPos < vSortedByHeight.size()) {
             CBlock block;
-            assert(ReadBlockFromDisk(block, pindex));
+            if (!ReadBlockFromDisk(block, pindex)) {
+                strError = "The wallet has been not been closed gracefully and has caused corruption of blocks stored to disk. Data directory is in an unusable state";
+                return false;
+            }
              vector<CTxUndo> vtxundo;
             vtxundo.reserve(block.vtx.size() - 1);
             uint256 hashBlock = block.GetHash();
@@ -4701,6 +4706,7 @@ bool static LoadBlockIndexDB()
              pindex = vSortedByHeight[++nSortedPos].second;
         }
 
+        // Save the updates to disk
         if (!view.Flush() || !pcoinsTip->Flush())
             LogPrintf("%s : failed to flush view\n", __func__);
 
@@ -4831,10 +4837,10 @@ void UnloadBlockIndex()
     pindexBestInvalid = NULL;
 }
 
-bool LoadBlockIndex()
+bool LoadBlockIndex(string& strError)
 {
     // Load block index from databases
-    if (!fReindex && !LoadBlockIndexDB())
+    if (!fReindex && !LoadBlockIndexDB(strError))
         return false;
     return true;
 }
