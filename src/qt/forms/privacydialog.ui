@@ -297,6 +297,12 @@
                         </item>
                         <item>
                          <widget class="QLabel" name="labelzCDMAmountValue">
+                          <property name="font">
+                           <font>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                          </font>
+                          </property>
                           <property name="toolTip">
                            <string>Enter an amount of CDM to convert to zCDM</string>
                           </property>
