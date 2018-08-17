@@ -57,14 +57,17 @@ PrivacyDialog::PrivacyDialog(QWidget* parent) : QDialog(parent),
     ui->labelCoinControlAmount->addAction(clipboardAmountAction);
 
     // Denomination labels
-    ui->labelzDenom1Text->setText("Denom. with value <b>1</b>:");
-    ui->labelzDenom2Text->setText("Denom. with value <b>5</b>:");
-    ui->labelzDenom3Text->setText("Denom. with value <b>10</b>:");
-    ui->labelzDenom4Text->setText("Denom. with value <b>50</b>:");
-    ui->labelzDenom5Text->setText("Denom. with value <b>100</b>:");
-    ui->labelzDenom6Text->setText("Denom. with value <b>500</b>:");
-    ui->labelzDenom7Text->setText("Denom. with value <b>1000</b>:");
-    ui->labelzDenom8Text->setText("Denom. with value <b>5000</b>:");
+    ui->labelzDenom1Text->setText(tr("Denom. with value <b>1</b>:"));
+    ui->labelzDenom2Text->setText(tr("Denom. with value <b>5</b>:"));
+    ui->labelzDenom3Text->setText(tr("Denom. with value <b>10</b>:"));
+    ui->labelzDenom4Text->setText(tr("Denom. with value <b>50</b>:"));
+    ui->labelzDenom5Text->setText(tr("Denom. with value <b>100</b>:"));
+    ui->labelzDenom6Text->setText(tr("Denom. with value <b>500</b>:"));
+    ui->labelzDenom7Text->setText(tr("Denom. with value <b>1000</b>:"));
+    ui->labelzDenom8Text->setText(tr("Denom. with value <b>5000</b>:"));
+
+     // AutoMint status
+    ui->label_AutoMintStatus->setText(tr("AutoMint Status:"));
 
     // Condominium settings
     QSettings settings;
@@ -436,6 +439,8 @@ void PrivacyDialog::sendzCDM()
 
     // Clear zcondominium selector in case it was used
     ZCondominiumControlDialog::listSelectedMints.clear();
+    ui->labelzCondominiumSelected_int->setText(QString("0"));
+    ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment
     QString strStats = "";
@@ -657,6 +662,17 @@ void PrivacyDialog::setBalance(const CAmount& balance, const CAmount& unconfirme
     ui->labelzAvailableAmount->setText(QString::number(zerocoinBalance/COIN) + QString(" zCDM "));
     ui->labelzAvailableAmount_2->setText(QString::number(matureZerocoinBalance/COIN) + QString(" zCDM "));
     ui->labelzCDMAmountValue->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, balance - immatureBalance - nLockedBalance, false, BitcoinUnits::separatorAlways));
+
+    // Display AutoMint status
+    QString strAutomintStatus = tr("AutoMint Status:");
+     if (pwalletMain->isZeromintEnabled ()) {
+       strAutomintStatus += tr(" <b>enabled</b>.");
+    }
+    else {
+       strAutomintStatus += tr(" <b>disabled</b>.");
+    }
+     strAutomintStatus += tr(" Configured target percentage: <b>") + QString::number(pwalletMain->getZeromintPercentage()) + "%</b>";
+    ui->label_AutoMintStatus->setText(strAutomintStatus);
 }
 
 void PrivacyDialog::updateDisplayUnit()
