@@ -448,6 +448,7 @@ bool IsBlockHashInChain(const uint256& hashBlock);
 void RecalculateZCONDOMINIUMSpent();
 void RecalculateZCONDOMINIUMMinted();
 bool RecalculateCONDOMINIUMSupply(int nHeightStart);
+bool ReindexAccumulators(list<uint256> listMissingCheckpoints, string& strError);
 
 
 /**
