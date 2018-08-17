@@ -117,6 +117,7 @@ public:
     int Zerocoin_Block_FirstFraudulent() const { return nBlockFirstFraudulent; }
     int Zerocoin_Block_LastGoodCheckpoint() const { return nBlockLastGoodCheckpoint; }
     int Zerocoin_StartTime() const { return nZerocoinStartTime; }
+    int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
     int Zerocoin_AccumulatorStartHeight() const { return nAccumulatorStartHeight; }
 
 protected:
@@ -174,6 +175,7 @@ protected:
     int nBlockRecalculateAccumulators;
     int nBlockFirstFraudulent;
     int nBlockLastGoodCheckpoint;
+    int nBlockEnforceInvalidUTXO;
     int nZerocoinStartTime;
     int nAccumulatorStartHeight;
 };

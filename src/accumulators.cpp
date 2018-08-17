@@ -279,8 +279,10 @@ bool GenerateAccumulatorWitness(const PublicCoin &coin, Accumulator& accumulator
         if (pindex->nHeight % 10 == 0) {
             nChanges++;
 
-            if (nChanges == 1)
+            if (nChanges == 1) {
                 nCheckpointBeforeMint = pindex->nAccumulatorCheckpoint;
+                break;
+            }
         }
         pindex = chainActive.Next(pindex);
     }
