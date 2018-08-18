@@ -1,33 +1,33 @@
-bin_PROGRAMS += qt/cdm-qt
+bin_PROGRAMS += qt/condominium-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# cdm qt core #
+# condominium qt core #
 QT_TS = \
-  qt/locale/cdm_bg.ts \
-  qt/locale/cdm_ca.ts \
-  qt/locale/cdm_cs.ts \
-  qt/locale/cdm_da.ts \
-  qt/locale/cdm_de.ts \
-  qt/locale/cdm_en.ts \
-  qt/locale/cdm_en_US.ts \
-  qt/locale/cdm_es.ts \
-  qt/locale/cdm_fi.ts \
-  qt/locale/cdm_fr_FR.ts \
-  qt/locale/cdm_it.ts \
-  qt/locale/cdm_ja.ts \
-  qt/locale/cdm_ko_KR.ts \
-  qt/locale/cdm_nl.ts \
-  qt/locale/cdm_pl.ts \
-  qt/locale/cdm_pt.ts \
-  qt/locale/cdm_pt_BR.ts \
-  qt/locale/cdm_ro_RO.ts \
-  qt/locale/cdm_ru.ts \
-  qt/locale/cdm_sk.ts \
-  qt/locale/cdm_sv.ts \
-  qt/locale/cdm_tr.ts \
-  qt/locale/cdm_uk.ts \
-  qt/locale/cdm_zh_CN.ts \
-  qt/locale/cdm_zh_TW.ts
+  qt/locale/condominium_bg.ts \
+  qt/locale/condominium_ca.ts \
+  qt/locale/condominium_cs.ts \
+  qt/locale/condominium_da.ts \
+  qt/locale/condominium_de.ts \
+  qt/locale/condominium_en.ts \
+  qt/locale/condominium_en_US.ts \
+  qt/locale/condominium_es.ts \
+  qt/locale/condominium_fi.ts \
+  qt/locale/condominium_fr_FR.ts \
+  qt/locale/condominium_it.ts \
+  qt/locale/condominium_ja.ts \
+  qt/locale/condominium_ko_KR.ts \
+  qt/locale/condominium_nl.ts \
+  qt/locale/condominium_pl.ts \
+  qt/locale/condominium_pt.ts \
+  qt/locale/condominium_pt_BR.ts \
+  qt/locale/condominium_ro_RO.ts \
+  qt/locale/condominium_ru.ts \
+  qt/locale/condominium_sk.ts \
+  qt/locale/condominium_sv.ts \
+  qt/locale/condominium_tr.ts \
+  qt/locale/condominium_uk.ts \
+  qt/locale/condominium_zh_CN.ts \
+  qt/locale/condominium_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -53,7 +53,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/forms/zpivcontroldialog.ui
+  qt/forms/zcdmcontroldialog.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -106,23 +106,23 @@ QT_MOC_CPP = \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
-  qt/moc_zpivcontroldialog.cpp
+  qt/moc_zcdmcontroldialog.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/cdm.moc \
+  qt/condominium.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_cdm.cpp
-QT_QRC = qt/cdm.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_cdm_locale.cpp
-QT_QRC_LOCALE = qt/cdm_locale.qrc
+QT_QRC_CPP = qt/qrc_condominium.cpp
+QT_QRC = qt/condominium.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_condominium_locale.cpp
+QT_QRC_LOCALE = qt/condominium_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -186,7 +186,7 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
-  qt/zpivcontroldialog.h
+  qt/zcdmcontroldialog.h
 
 RES_ICONS = \
   qt/res/icons/add.png \
@@ -240,12 +240,12 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_cdm.png \
-  qt/res/icons/unit_mcdm.png \
-  qt/res/icons/unit_ucdm.png \
-  qt/res/icons/unit_tcdm.png \
-  qt/res/icons/unit_tmcdm.png \
-  qt/res/icons/unit_tucdm.png
+  qt/res/icons/unit_condominium.png \
+  qt/res/icons/unit_mcondominium.png \
+  qt/res/icons/unit_ucondominium.png \
+  qt/res/icons/unit_tcondominium.png \
+  qt/res/icons/unit_tmcondominium.png \
+  qt/res/icons/unit_tucondominium.png
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -307,7 +307,7 @@ BITCOIN_QT_CPP += \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
-  qt/zpivcontroldialog.cpp
+  qt/zcdmcontroldialog.cpp
 
 endif
 
@@ -315,7 +315,7 @@ RES_IMAGES = \
   qt/res/images/about.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
-  qt/res/images/cdm_logo_horizontal.png \
+  qt/res/images/condominium_logo_horizontal.png \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
@@ -331,7 +331,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/cdm-qt-res.rc
+BITCOIN_RC = qt/res/condominium-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -351,69 +351,69 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_cdm_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_condominium_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# cdm-qt binary #
-qt_cdm_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# condominium-qt binary #
+qt_condominium_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_cdm_qt_SOURCES = qt/cdm.cpp
+qt_condominium_qt_SOURCES = qt/condominium.cpp
 if TARGET_DARWIN
-  qt_cdm_qt_SOURCES += $(BITCOIN_MM)
+  qt_condominium_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_cdm_qt_SOURCES += $(BITCOIN_RC)
+  qt_condominium_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_cdm_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_condominium_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_cdm_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_condominium_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_cdm_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_condominium_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_cdm_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_condominium_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_cdm_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_cdm_qt_LIBTOOLFLAGS = --tag CXX
+qt_condominium_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_condominium_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/cdmstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/condominiumstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/cdmstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/condominiumstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/cdm_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/condominium_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cdm_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name condominium_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cdm $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name condominium $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-cdm_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_cdm_qt_OBJECTS) qt/cdm-qt$(EXEEXT) $(LIBBITCOINQT)
+condominium_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_condominium_qt_OBJECTS) qt/condominium-qt$(EXEEXT) $(LIBBITCOINQT)
 
-cdm_qt : qt/cdm-qt$(EXEEXT)
+condominium_qt : qt/condominium-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

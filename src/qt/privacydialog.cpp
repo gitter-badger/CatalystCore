@@ -14,7 +14,7 @@
 #include "sendcoinsentry.h"
 #include "walletmodel.h"
 #include "coincontrol.h"
-#include "zcondominiumcontroldialog.h"
+#include "zcdmcontroldialog.h"
 #include "spork.h"
 
 #include <QClipboard>
@@ -449,7 +449,7 @@ void PrivacyDialog::sendzCDM()
 
     // Clear zcondominium selector in case it was used
     ZCondominiumControlDialog::listSelectedMints.clear();
-    ui->labelzCondominiumSelected_int->setText(QString("0"));
+    ui->labelzCDMSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment

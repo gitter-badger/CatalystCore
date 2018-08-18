@@ -8,7 +8,7 @@
 #else
 #define UNUSED
 #endif
-static const char UNUSED *condominium_strings[] = {
+static const char UNUSED *cdm_strings[] = {
 QT_TRANSLATE_NOOP("condominium-core", " mints deleted\n"),
 QT_TRANSLATE_NOOP("condominium-core", " mints updated, "),
 QT_TRANSLATE_NOOP("condominium-core", " unconfirmed transactions removed\n"),

@@ -195,9 +195,9 @@ void RPCExecutor::request(const QString& command)
             RPCConvertValues(args[0], std::vector<std::string>(args.begin() + 1, args.end())));
 
         // Format result reply
-        if (result.type() == isNull())
+        if (result.isNull())
             strPrint = "";
-        else if (result.type() == isStr())
+        else if (result.isStr())
             strPrint = result.get_str();
         else
             strPrint = result.write(2);
