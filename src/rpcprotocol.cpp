@@ -267,7 +267,7 @@ string JSONRPCRequest(const string& strMethod, const UniValue& params, const Uni
     return request.write() + "\n";
 }
 
-Object JSONRPCReplyObj(const UniValue& result, const UniValue& error, const UniValue& id)
+UniValue JSONRPCReplyObj(const UniValue& result, const UniValue& error, const UniValue& id)
 {
     UniValue reply(UniValue::VOBJ);
     if (!error.isNull())

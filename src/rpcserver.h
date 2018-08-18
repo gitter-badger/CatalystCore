@@ -64,12 +64,13 @@ bool RPCIsInWarmup(std::string* statusOut);
  */
 void RPCTypeCheck(const UniValue& params,
     const std::list<UniValue::VType>& typesExpected, bool fAllowNull=false);
+
 /**
  * Check for expected keys/value types in an Object.
- * Use like: RPCTypeCheck(object, boost::assign::map_list_of("name", str_type)("value", int_type));
+ * Use like: RPCTypeCheckObj(object, boost::assign::map_list_of("name", str_type)("value", int_type));
  */
 void RPCTypeCheckObj(const UniValue& o,
-    const std::map<std::string, UniValue::VType>& typesExpected, bool fAllowNull=false);
+                  const std::map<std::string, UniValue::VType>& typesExpected, bool fAllowNull=false);
 
 /**
  * Run func nSeconds from now. Uses boost deadline timers.
