@@ -40,11 +40,11 @@ MasternodeList::MasternodeList(QWidget* parent) : QWidget(parent),
     ui->tableWidgetMyMasternodes->setColumnWidth(4, columnActiveWidth);
     ui->tableWidgetMyMasternodes->setColumnWidth(5, columnLastSeenWidth);
 
-    ui->tableWidgetMasternodes->setColumnWidth(0, columnAddressWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(1, columnProtocolWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(2, columnStatusWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(3, columnActiveWidth);
-    ui->tableWidgetMasternodes->setColumnWidth(4, columnLastSeenWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(0, columnAddressWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(1, columnProtocolWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(2, columnStatusWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(3, columnActiveWidth);
+    ui->tableWidgetMyMasternodes->setColumnWidth(4, columnLastSeenWidth);
 
     ui->tableWidgetMyMasternodes->setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -210,7 +210,7 @@ void MasternodeList::updateMyNodeList(bool fForce)
     if (nSecondsTillUpdate > 0 && !fForce) return;
     nTimeMyListUpdated = GetTime();
 
-    ui->tableWidgetMasternodes->setSortingEnabled(false);
+    ui->tableWidgetMyMasternodes->setSortingEnabled(false);
     BOOST_FOREACH (CMasternodeConfig::CMasternodeEntry mne, masternodeConfig.getEntries()) {
         int nIndex;
         if(!mne.castOutputIndex(nIndex))
@@ -221,7 +221,7 @@ void MasternodeList::updateMyNodeList(bool fForce)
 	updateMyMasternodeInfo(QString::fromStdString(mne.getAlias()), QString::fromStdString(mne.getIp()), pmn);
 
     }
-    ui->tableWidgetMasternodes->setSortingEnabled(true);
+    ui->tableWidgetMyMasternodes->setSortingEnabled(true);
 
     // reset "timer"
     ui->secondsLabel->setText("0");
@@ -236,7 +236,7 @@ void MasternodeList::updateNodeList()
     // or MASTERNODELIST_FILTER_COOLDOWN_SECONDS seconds after filter was last changed
     int64_t nSecondsToWait = fFilterUpdated ? nTimeFilterUpdated - GetTime() + MASTERNODELIST_FILTER_COOLDOWN_SECONDS : nTimeListUpdated - GetTime() + MASTERNODELIST_UPDATE_SECONDS;
 
-    if (fFilterUpdated) ui->countLabel->setText(QString::fromStdString(strprintf("Please wait... %d", nSecondsToWait)));
+    if (fFilterUpdated) ui->secondsLabel->setText(QString::fromStdString(strprintf("Please wait... %d", nSecondsToWait)));
     if (nSecondsToWait > 0) return;
 
     nTimeListUpdated = GetTime();
@@ -246,10 +246,10 @@ void MasternodeList::updateNodeList()
     if (!lockMasternodes) return;
 
     QString strToFilter;
-    ui->countLabel->setText("Updating...");
-    ui->tableWidgetMasternodes->setSortingEnabled(false);
-    ui->tableWidgetMasternodes->clearContents();
-    ui->tableWidgetMasternodes->setRowCount(0);
+    ui->secondsLabel->setText("Updating...");
+    ui->tableWidgetMyMasternodes->setSortingEnabled(false);
+    ui->tableWidgetMyMasternodes->clearContents();
+    ui->tableWidgetMyMasternodes->setRowCount(0);
     std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
 
     BOOST_FOREACH (CMasternode& mn, vMasternodes) {
@@ -272,17 +272,17 @@ void MasternodeList::updateNodeList()
             if (!strToFilter.contains(strCurrentFilter)) continue;
         }
 
-        ui->tableWidgetMasternodes->insertRow(0);
-        ui->tableWidgetMasternodes->setItem(0, 0, addressItem);
-        ui->tableWidgetMasternodes->setItem(0, 1, protocolItem);
-        ui->tableWidgetMasternodes->setItem(0, 2, statusItem);
-        ui->tableWidgetMasternodes->setItem(0, 3, activeSecondsItem);
-        ui->tableWidgetMasternodes->setItem(0, 4, lastSeenItem);
-        ui->tableWidgetMasternodes->setItem(0, 5, pubkeyItem);
+        ui->tableWidgetMyMasternodes->insertRow(0);
+        ui->tableWidgetMyMasternodes->setItem(0, 0, addressItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 1, protocolItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 2, statusItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 3, activeSecondsItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 4, lastSeenItem);
+        ui->tableWidgetMyMasternodes->setItem(0, 5, pubkeyItem);
     }
 
-    ui->countLabel->setText(QString::number(ui->tableWidgetMasternodes->rowCount()));
-    ui->tableWidgetMasternodes->setSortingEnabled(true);
+    ui->secondsLabel->setText(QString::number(ui->tableWidgetMyMasternodes->rowCount()));
+    ui->tableWidgetMyMasternodes->setSortingEnabled(true);
 }
 
 
@@ -291,7 +291,7 @@ void MasternodeList::on_filterLineEdit_textChanged(const QString& strFilterIn)
     strCurrentFilter = strFilterIn;
     nTimeFilterUpdated = GetTime();
     fFilterUpdated = true;
-    ui->countLabel->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
+    ui->secondsLabel->setText(QString::fromStdString(strprintf("Please wait... %d", MASTERNODELIST_FILTER_COOLDOWN_SECONDS)));
 }
 
 void MasternodeList::on_startButton_clicked()
