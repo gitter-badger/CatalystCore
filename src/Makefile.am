@@ -3,7 +3,8 @@ AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS)
 
 if EMBEDDED_UNIVALUE
 LIBUNIVALUE = univalue/libunivalue.la
- $(LIBUNIVALUE): $(wildcard univalue/lib/*) $(wildcard univalue/include/*)
+
+$(LIBUNIVALUE): $(wildcard univalue/lib/*) $(wildcard univalue/include/*)
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C $(@D) $(@F)
 else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
@@ -72,15 +73,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += condominiumd
+  bin_PROGRAMS += cdmd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += condominium-cli condominium-tx
+  bin_PROGRAMS += cdm-cli cdm-tx
 endif
 
 .PHONY: FORCE
-# condominium core #
+# cdm core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   accumulators.h \
@@ -185,7 +186,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between condominiumd and condominium-qt
+# server: shared between cdmd and cdm-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -230,7 +231,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between condominiumd and condominium-qt, but only linked
+# wallet: shared between cdmd and cdm-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -271,26 +272,13 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/scrypt.cpp \
   crypto/ripemd160.cpp \
-  crypto/sph_md_helper.c \
-  crypto/sph_sha2big.c \
   crypto/aes_helper.c \
   crypto/blake.c \
   crypto/bmw.c \
   crypto/groestl.c \
   crypto/jh.c \
-  crypto/luffa.c \
   crypto/keccak.c \
   crypto/skein.c \
-  crypto/cubehash.c \
-  crypto/shavite.c \
-  crypto/shabal.c \
-  crypto/simd.c \
-  crypto/echo.c \
-  crypto/whirlpool.c \
-  crypto/haval.c \
-  crypto/hamsi.c \
-  crypto/fugue.c \
-  crypto/sha2.c \
   crypto/common.h \
   crypto/sha256.h \
   crypto/sha512.h \
@@ -305,18 +293,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_groestl.h \
   crypto/sph_jh.h \
   crypto/sph_keccak.h \
-  crypto/sph_luffa.h \
-  crypto/sph_shavite.h \
-  crypto/sph_hamsi.h \
-  crypto/sph_cubehash.h \
   crypto/sph_skein.h \
-  crypto/sph_simd.h \
-  crypto/sph_fugue.h \
-  crypto/sph_echo.h \
-  crypto/sph_shabal.h \
-  crypto/sph_whirlpool.h \
-  crypto/sph_sha2.h \
-  crypto/sph_haval.h \
   crypto/sph_types.h
 
 # libzerocoin library
@@ -342,7 +319,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between condominiumd, and condominium-qt and non-server tools
+# common: shared between cdmd, and cdm-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   accumulators.cpp \
@@ -402,7 +379,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between condominium-cli and condominium-qt
+# cli: shared between cdm-cli and cdm-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -412,7 +389,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-condominiumd_LDADD = \
+cdmd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -424,26 +401,26 @@ condominiumd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-condominiumd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+cdmd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-condominiumd_LDADD += libbitcoin_wallet.a
+cdmd_LDADD += libbitcoin_wallet.a
 endif
-condominiumd_SOURCES = condominiumd.cpp
+cdmd_SOURCES = cdmd.cpp
 #
 
 if TARGET_WINDOWS
-condominiumd_SOURCES += condominiumd-res.rc
+cdmd_SOURCES += cdmd-res.rc
 endif
 
-condominiumd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-condominiumd_CPPFLAGS = $(BITCOIN_INCLUDES)
-condominiumd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+cdmd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+cdmd_CPPFLAGS = $(BITCOIN_INCLUDES)
+cdmd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# condominium-cli binary #
-condominium_cli_LDADD = \
+# cdm-cli binary #
+cdm_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -452,14 +429,14 @@ condominium_cli_LDADD = \
   $(CRYPTO_LIBS) \
   $(EVENT_LIBS)
 
-condominium_cli_SOURCES = \
-  condominium-cli.cpp
+cdm_cli_SOURCES = \
+  cdm-cli.cpp
 
-condominium_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+cdm_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 #
 
-# condominium-tx binary #
-condominium_tx_LDADD = \
+# cdm-tx binary #
+cdm_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -469,15 +446,15 @@ condominium_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-condominium_tx_SOURCES = condominium-tx.cpp
-condominium_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+cdm_tx_SOURCES = cdm-tx.cpp
+cdm_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-condominium_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+cdm_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-condominium_cli_SOURCES += condominium-cli-res.rc
+cdm_cli_SOURCES += cdm-cli-res.rc
 endif
-condominium_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+cdm_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
@@ -529,7 +506,7 @@ EXTRA_DIST = leveldb
 clean-local:
 	-$(MAKE) -C leveldb clean
 	-$(MAKE) -C secp256k1 clean
-        -$(MAKE) -C univalue clean
+	-$(MAKE) -C univalue clean
 	rm -f leveldb/*/*.gcno leveldb/helpers/memenv/*.gcno
 	-rm -f config.h
 
