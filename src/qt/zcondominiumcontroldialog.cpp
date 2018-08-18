@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zcdmcontroldialog.h"
-#include "ui_zcdmcontroldialog.h"
+#include "zcondominiumcontroldialog.h"
+#include "ui_zcondominiumcontroldialog.h"
 
 #include "main.h"
 #include "walletmodel.h"
