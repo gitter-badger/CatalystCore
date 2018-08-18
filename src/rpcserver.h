@@ -113,7 +113,7 @@ public:
      * @returns Result of the call.
      * @throws an exception (UniValue) when an error happens.
      */
-    UniValue(const std::string&method, const UniValue &params) const;
+    UniValue execute(const std::string&method, const UniValue &params) const;
 
     /**
     * Returns a list of registered commands

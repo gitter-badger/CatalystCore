@@ -1015,7 +1015,7 @@ void ServiceConnection(AcceptedConnection* conn)
     }
 }
 
-UniValue CRPCTable::execute(const std::string &strMethod, UniValue &params) const
+UniValue CRPCTable::execute(const std::string &strMethod, const UniValue &params) const
 {
     // Find method
     const CRPCCommand* pcmd = tableRPC[strMethod];

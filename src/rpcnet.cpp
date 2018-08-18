@@ -266,7 +266,7 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             UniValue obj(UniValue::VOBJ);
             obj.push_back(Pair("addednode", strAddNode));
             obj.push_back(Pair("connected", false));
-            Array addresses;
+            UniValue addresses(UniValue::VARR);
             obj.push_back(Pair("addresses", addresses));
         }
     }

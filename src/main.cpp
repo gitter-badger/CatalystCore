@@ -3049,7 +3049,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         uint256 nCheckpointCalculated = 0;
         // if IDB, invalid outpoints must be calculated or else acc checkpoint will be incorrect
         if (pindex->nHeight == Params().Zerocoin_Block_RecalculateAccumulators())
-            PopulateInvalidOutPointMap();
+            //PopulateInvalidOutPointMap();
          if (!CalculateAccumulatorCheckpoint(pindex->nHeight, nCheckpointCalculated)) {
             //Calculate list of checkpoints that may be missing due to deletion on block 809000, and rewinding back before 809000
             int nStop = Params().Zerocoin_Block_RecalculateAccumulators() + 20;

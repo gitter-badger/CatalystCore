@@ -1385,9 +1385,6 @@ bool AppInit2(boost::thread_group& threadGroup)
                         return InitError(strError);
                 }
 
-                // Populate list of invalid/fraudulent outpoints that are banned from the chain
-                PopulateInvalidOutPointMap();
-
                 uiInterface.InitMessage(_("Verifying blocks..."));
 
                 // Flag sent to validation code to let it know it can skip certain checks

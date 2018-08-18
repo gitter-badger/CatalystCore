@@ -504,7 +504,7 @@ UniValue setmocktime(const UniValue& params, bool fHelp)
     RPCTypeCheck(params, boost::assign::list_of(UniValue::VNUM));
     SetMockTime(params[0].get_int64());
 
-    return return NullUniValue;
+    return NullUniValue;
 }
 
 #ifdef ENABLE_WALLET
