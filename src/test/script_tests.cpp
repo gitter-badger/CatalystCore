@@ -53,7 +53,7 @@ read_json(const std::string& jsondata)
     if (!v.read(jsondata) || !v.isArray())
     {
         BOOST_ERROR("Parse error.");
-        return UniValue(UniValue::VARR)
+        return UniValue(UniValue::VARR);
     }
     return v.get_array();
 }
