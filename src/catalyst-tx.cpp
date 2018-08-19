@@ -47,10 +47,10 @@ static bool AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || mapArgs.count("-?") || mapArgs.count("-help")) {
         // First part of help message is specific to this utility
-        std::string strUsage = _("Condominium Core condominium-tx utility version") + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = _("Catalyst Core catalyst-tx utility version") + " " + FormatFullVersion() + "\n\n" +
                                _("Usage:") + "\n" +
-                               "  condominium-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded condominium transaction") + "\n" +
-                               "  condominium-tx [options] -create [commands]   " + _("Create hex-encoded condominium transaction") + "\n" +
+                               "  catalyst-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded catalyst transaction") + "\n" +
+                               "  catalyst-tx [options] -create [commands]   " + _("Create hex-encoded catalyst transaction") + "\n" +
                                "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -552,7 +552,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw runtime_error("too few parameters");
 
-            // param: hex-encoded condominium transaction
+            // param: hex-encoded catalyst transaction
             string strHexTx(argv[1]);
             if (strHexTx == "-") // "-" implies standard input
                 strHexTx = readStdin();

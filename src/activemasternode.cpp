@@ -12,7 +12,7 @@
 #include "spork.h"
 
 //
-// Bootup the Masternode, look for a 35000 CONDOMINIUM input and register on the network
+// Bootup the Masternode, look for a 35000 XAT input and register on the network
 //
 void CActiveMasternode::ManageStatus()
 {
