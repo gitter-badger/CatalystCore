@@ -22,7 +22,7 @@
 #endif
 
 #if defined(HAVE_CONFIG_H)
-#include "config/cdm-config.h" /* for USE_QRCODE */
+#include "config/catalyst-config.h" /* for USE_QRCODE */
 #endif
 
 #ifdef USE_QRCODE

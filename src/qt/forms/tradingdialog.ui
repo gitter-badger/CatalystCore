@@ -442,10 +442,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy CONDOMINIUM</string>
+      <string>Buy CATALYST</string>
      </property>
      <property name="icon">
-      <iconset resource="../condominium.qrc">
+      <iconset resource="../catalyst.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -512,7 +512,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>CONDOMINIUM</string>
+      <string>CATALYST</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1704,7 +1704,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>CONDOMINIUM</string>
+      <string>CATALYST</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="UnitsInputCONDOMINIUM">
@@ -1751,10 +1751,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell CONDOMINIUM</string>
+      <string>Sell CATALYST</string>
      </property>
      <property name="icon">
-      <iconset resource="../condominium">
+      <iconset resource="../catalyst">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -1777,7 +1777,7 @@
          </font>
         </property>
         <property name="text">
-         <string>CONDOMINIUM Available:</string>
+         <string>CATALYST Available:</string>
         </property>
        </widget>
       </item>
@@ -2221,7 +2221,7 @@
          </font>
         </property>
         <property name="text">
-         <string>CONDOMINIUM</string>
+         <string>CATALYST</string>
         </property>
        </widget>
       </item>
@@ -2762,7 +2762,7 @@
       </font>
      </property>
      <property name="text">
-      <string>CONDOMINIUM Balance:</string>
+      <string>CATALYST Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2813,7 +2813,7 @@
       </font>
      </property>
      <property name="text">
-      <string>CONDOMINIUM Available:</string>
+      <string>CATALYST Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2832,7 +2832,7 @@
       </font>
      </property>
      <property name="text">
-      <string>CONDOMINIUM Pending:</string>
+      <string>CATALYST Pending:</string>
      </property>
     </widget>
     <widget class="QLabel" name="CONDOMINIUMPendingLabel">
@@ -2928,7 +2928,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex CONDOMINIUM Deposit Address:</string>
+      <string>Bittrex CATALYST Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">
@@ -2941,10 +2941,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate Condominium Deposit Address</string>
+      <string>Generate Catalyst Deposit Address</string>
      </property>
      <property name="icon">
-      <iconset resource="../condominium.qrc">
+      <iconset resource="../catalyst.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3206,7 +3206,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../condominium.qrc">:/icons/transaction_1</pixmap>
+       <pixmap resource="../catalyst.qrc">:/icons/transaction_1</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -3253,7 +3253,7 @@
       <string>Update API Keys</string>
      </property>
      <property name="icon">
-      <iconset resource="../condominium.qrc">
+      <iconset resource="../catalyst.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3408,7 +3408,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../condominium.qrc"/>
+  <include location="../catalyst.qrc"/>
  </resources>
  <connections/>
 </ui>

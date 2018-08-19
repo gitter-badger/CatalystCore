@@ -6,7 +6,7 @@
 #define BITCOIN_QT_BITCOINGUI_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/cdm-config.h"
+#include "config/catalyst-config.h"
 #endif
 
 #include "amount.h"
@@ -271,7 +271,7 @@ private:
 
     /** Shows context menu with Display Unit options by the mouse coordinates */
     void onDisplayUnitsClicked(const QPoint& point);
-    /** Creates context menu, its actions, and catalysts up all the relevant signals for mouse events. */
+    /** Creates context menu, its actions, and condominiums up all the relevant signals for mouse events. */
     void createContextMenu();
 
 private slots:

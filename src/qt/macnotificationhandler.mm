@@ -15,7 +15,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.condominium.Condominium-Qt";
+        return @"io.catalyst.Catalyst-Qt";
     } else {
         return [self __bundleIdentifier];
     }

@@ -332,7 +332,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     tabGroup->addAction(historyAction);
 
     privacyAction = new QAction(QIcon(":/icons/privacy"), tr("&Privacy"), this);
-    privacyAction->setStatusTip(tr("Privacy Actions for zCDM"));
+    privacyAction->setStatusTip(tr("Privacy Actions for zXAT"));
     privacyAction->setToolTip(privacyAction->statusTip());
     privacyAction->setCheckable(true);
 #ifdef Q_OS_MAC
@@ -1031,7 +1031,7 @@ void BitcoinGUI::message(const QString& title, const QString& message, unsigned 
             break;
         }
     }
-    // Append title to "Catalyst - "
+    // Append title to "Condominium - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 
@@ -1311,7 +1311,7 @@ void UnitDisplayStatusBarControl::mousePressEvent(QMouseEvent* event)
     onDisplayUnitsClicked(event->pos());
 }
 
-/** Creates context menu, its actions, and catalysts up all the relevant signals for mouse events. */
+/** Creates context menu, its actions, and condominiums up all the relevant signals for mouse events. */
 void UnitDisplayStatusBarControl::createContextMenu()
 {
     menu = new QMenu();

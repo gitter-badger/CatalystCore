@@ -19,7 +19,7 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(XAT);
+    unitlist.append(CATALYST);
     unitlist.append(mXAT);
     unitlist.append(uXAT);
     return unitlist;
@@ -28,7 +28,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case XAT:
+    case CATALYST:
     case mXAT:
     case uXAT:
         return true;
@@ -40,7 +40,7 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case XAT:
+    case CATALYST:
         return QString("xat");
     case mXAT:
         return QString("mxat");
@@ -55,7 +55,7 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case XAT:
+        case CATALYST:
             return QString("XAT");
         case mXAT:
             return QString("mXAT");
@@ -66,7 +66,7 @@ QString BitcoinUnits::name(int unit)
         }
     } else {
         switch (unit) {
-        case XAT:
+        case CATALYST:
             return QString("tXAT");
         case mXAT:
             return QString("mtXAT");
@@ -82,18 +82,18 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case XAT:
-            return QString("XAT");
+        case CATALYST:
+            return QString("CATALYST");
         case mXAT:
-            return QString("Milli-XAT (1 / 1" THIN_SP_UTF8 "000)");
+            return QString("Milli-CATALYST (1 / 1" THIN_SP_UTF8 "000)");
         case uXAT:
-            return QString("Micro-XAT (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            return QString("Micro-CATALYST (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case XAT:
+        case CATALYST:
             return QString("TestXATs");
         case mXAT:
             return QString("Milli-TestXAT (1 / 1" THIN_SP_UTF8 "000)");
@@ -108,7 +108,7 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case XAT:
+    case CATALYST:
         return 100000000;
     case mXAT:
         return 100000;
@@ -122,7 +122,7 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case XAT:
+    case CATALYST:
         return 8;
     case mXAT:
         return 5;

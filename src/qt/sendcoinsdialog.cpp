@@ -884,7 +884,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
             ui->labelCoinControlChangeLabel->setText("");
         } else if (!addr.IsValid()) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Condominium address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Catalyst address"));
         } else // Valid address
         {
             CPubKey pubkey;

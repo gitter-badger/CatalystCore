@@ -53,14 +53,14 @@ using namespace boost;
 using namespace std;
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
-const QString BITCOIN_IPC_PREFIX("condominium:");
+const QString BITCOIN_IPC_PREFIX("catalyst:");
 // BIP70 payment protocol messages
 const char* BIP70_MESSAGE_PAYMENTACK = "PaymentACK";
 const char* BIP70_MESSAGE_PAYMENTREQUEST = "PaymentRequest";
 // BIP71 payment protocol media types
-const char* BIP71_MIMETYPE_PAYMENT = "application/condominium-payment";
-const char* BIP71_MIMETYPE_PAYMENTACK = "application/condominium-paymentack";
-const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/condominium-paymentrequest";
+const char* BIP71_MIMETYPE_PAYMENT = "application/catalyst-payment";
+const char* BIP71_MIMETYPE_PAYMENTACK = "application/catalyst-paymentack";
+const char* BIP71_MIMETYPE_PAYMENTREQUEST = "application/catalyst-paymentrequest";
 // BIP70 max payment request size in bytes (DoS protection)
 const qint64 BIP70_MAX_PAYMENTREQUEST_SIZE = 50000;
 
@@ -87,7 +87,7 @@ namespace // Anon namespace
 //
 static QString ipcServerName()
 {
-    QString name("CondominiumQt");
+    QString name("CatalystQt");
 
     // Append a simple hash of the datadir
     // Note that GetDataDir(true) returns a different path
@@ -296,7 +296,7 @@ PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) : QObject(p
         if (!uriServer->listen(name)) {
             // constructor is called early in init, so don't use "emit message()" here
             QMessageBox::critical(0, tr("Payment request error"),
-                tr("Cannot start condominium: click-to-pay handler"));
+                tr("Cannot start catalyst: click-to-pay handler"));
         } else {
             connect(uriServer, SIGNAL(newConnection()), this, SLOT(handleURIConnection()));
             connect(this, SIGNAL(receivedPaymentACK(QString)), this, SLOT(handlePaymentACK(QString)));
@@ -410,7 +410,7 @@ void PaymentServer::handleURIOrFile(const QString& s)
                     emit receivedPaymentRequest(recipient);
             } else
                 emit message(tr("URI handling"),
-                    tr("URI cannot be parsed! This can be caused by an invalid Condominium address or malformed URI parameters."),
+                    tr("URI cannot be parsed! This can be caused by an invalid Catalyst address or malformed URI parameters."),
                     CClientUIInterface::ICON_WARNING);
 
             return;

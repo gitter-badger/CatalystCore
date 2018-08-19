@@ -77,7 +77,7 @@ extern double NSAppKitVersionNumber;
 #endif
 #endif
 
-#define URI_SCHEME "condominium"
+#define URI_SCHEME "catalyst"
 
 namespace GUIUtil
 {
@@ -110,7 +110,7 @@ void setupAddressWidget(QValidatedLineEdit* widget, QWidget* parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Condominium address (e.g. %1)").arg("CV7AeX9sYDiL2GSX9PhQzKFTgzmPUQnxX3"));
+    widget->setPlaceholderText(QObject::tr("Enter a Catalyst address (e.g. %1)").arg("CV7AeX9sYDiL2GSX9PhQzKFTgzmPUQnxX3"));
 #endif
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -161,7 +161,7 @@ bool parseBitcoinURI(const QUrl& uri, SendCoinsRecipient* out)
             fShouldReturnFalse = false;
         } else if (i->first == "amount") {
             if (!i->second.isEmpty()) {
-                if (!BitcoinUnits::parse(BitcoinUnits::CONDOMINIUM, i->second, &rv.amount)) {
+                if (!BitcoinUnits::parse(BitcoinUnits::CATALYST, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -196,7 +196,7 @@ QString formatBitcoinURI(const SendCoinsRecipient& info)
     int paramCount = 0;
 
     if (info.amount) {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::CONDOMINIUM, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::CATALYST, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -581,7 +581,7 @@ bool DHMSTableWidgetItem::operator<(QTableWidgetItem const& item) const
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "Condominium.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "Catalyst.lnk";
 }
 
 bool GetStartOnSystemStartup()
@@ -660,7 +660,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "condominium.desktop";
+    return GetAutostartDir() / "catalyst.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -699,7 +699,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         // Write a condominium.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=Condominium\n";
+        optionFile << "Name=Catalyst\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
