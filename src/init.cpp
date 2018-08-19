@@ -1361,10 +1361,10 @@ bool AppInit2(boost::thread_group& threadGroup)
                 // Recalculate money supply for blocks that are impacted by accounting issue after zerocoin activation
                 if (GetBoolArg("-reindexmoneysupply", false)) {
                     if (chainActive.Height() >= Params().Zerocoin_AccumulatorStartHeight()) {
-                        RecalculateZXATMinted();
-                        RecalculateZXATSpent();
+                        RecalculateZAriAMinted();
+                        RecalculateZAriASpent();
                     }
-                    RecalculateXATSupply(1);
+                    RecalculateAriASupply(1);
                 }
 
                 // Force recalculation of accumulators.
@@ -1567,7 +1567,7 @@ bool AppInit2(boost::thread_group& threadGroup)
         fVerifyingBlocks = false;
 
         bool fEnableZXATBackups = GetBoolArg("-backupzcatalyst", true);
-        pwalletMain->setZXATAutoBackups(fEnableZXATBackups);
+        pwalletMain->setZAriAAutoBackups(fEnableZXATBackups);
     }  // (!fDisableWallet)
 #else  // ENABLE_WALLET
     LogPrintf("No wallet compiled in!\n");
@@ -1713,7 +1713,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     }
 
 // XX42 Remove/refactor code below. Until then provide safe defaults
-    nAnonymizeXATAmount = 2;
+    nAnonymizeAriAAmount = 2;
 
 //    nLiquidityProvider = GetArg("-liquidityprovider", 0); //0-100
 //    if (nLiquidityProvider != 0) {
@@ -1722,9 +1722,9 @@ bool AppInit2(boost::thread_group& threadGroup)
 //        nZeromintPercentage = 99999;
 //    }
 //
-//    nAnonymizeXATAmount = GetArg("-anonymizexatamount", 0);
-//    if (nAnonymizeXATAmount > 999999) nAnonymizeXATAmount = 999999;
-//    if (nAnonymizeXATAmount < 2) nAnonymizeXATAmount = 2;
+//    nAnonymizeAriAAmount = GetArg("-anonymizexatamount", 0);
+//    if (nAnonymizeAriAAmount > 999999) nAnonymizeAriAAmount = 999999;
+//    if (nAnonymizeAriAAmount < 2) nAnonymizeAriAAmount = 2;
 
     fEnableSwiftTX = GetBoolArg("-enableswifttx", fEnableSwiftTX);
     nSwiftTXDepth = GetArg("-swifttxdepth", nSwiftTXDepth);
@@ -1738,7 +1738,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     LogPrintf("fLiteMode %d\n", fLiteMode);
     LogPrintf("nSwiftTXDepth %d\n", nSwiftTXDepth);
-    LogPrintf("Anonymize Catalyst Amount %d\n", nAnonymizeXATAmount);
+    LogPrintf("Anonymize Catalyst Amount %d\n", nAnonymizeAriAAmount);
     LogPrintf("Budget Mode %s\n", strBudgetMode.c_str());
 
     /* Denominations
