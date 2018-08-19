@@ -18,7 +18,7 @@
 
 #include <boost/function.hpp>
  
-#include "univalue/univalue.h"
+#include <univalue.h>
 
 class CBlockIndex;
 class CNetAddr;
@@ -64,12 +64,13 @@ bool RPCIsInWarmup(std::string* statusOut);
  */
 void RPCTypeCheck(const UniValue& params,
     const std::list<UniValue::VType>& typesExpected, bool fAllowNull=false);
+
 /**
  * Check for expected keys/value types in an Object.
- * Use like: RPCTypeCheck(object, boost::assign::map_list_of("name", str_type)("value", int_type));
+ * Use like: RPCTypeCheckObj(object, boost::assign::map_list_of("name", str_type)("value", int_type));
  */
 void RPCTypeCheckObj(const UniValue& o,
-    const std::map<std::string, UniValue::VType>& typesExpected, bool fAllowNull=false);
+                  const std::map<std::string, UniValue::VType>& typesExpected, bool fAllowNull=false);
 
 /**
  * Run func nSeconds from now. Uses boost deadline timers.
@@ -113,7 +114,7 @@ public:
      * @returns Result of the call.
      * @throws an exception (UniValue) when an error happens.
      */
-    UniValue(const std::string&method, const UniValue &params) const;
+    UniValue execute(const std::string&method, const UniValue &params) const;
 
     /**
     * Returns a list of registered commands

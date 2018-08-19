@@ -25,7 +25,7 @@
 
 #include <boost/assign/list_of.hpp>
 
-#include "univalue/univalue.h"
+#include <univalue.h>
 
 using namespace std;
 
@@ -520,7 +520,7 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
 		
 		CPubKey pubkey;
 		if (!pMiningKey->GetReservedKey(pubkey))
-			return Value::null;
+			return NullUniValue;
 		
         CScript scriptDummy = CScript() << ToByteVector(pubkey) << OP_CHECKSIG;
         pblocktemplate = CreateNewBlock(scriptDummy, pwalletMain, false);

@@ -7,7 +7,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/condominium-config.h"
+#include "config/cdm-config.h"
 #endif
 
 #include "init.h"
@@ -1384,9 +1384,6 @@ bool AppInit2(boost::thread_group& threadGroup)
                     if (!ReindexAccumulators(listAccCheckpointsNoDB, strError))
                         return InitError(strError);
                 }
-
-                // Populate list of invalid/fraudulent outpoints that are banned from the chain
-                PopulateInvalidOutPointMap();
 
                 uiInterface.InitMessage(_("Verifying blocks..."));
 

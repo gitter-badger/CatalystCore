@@ -28,7 +28,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 
-#include "univalue/univalue.h"
+#include <univalue.h>
 
 using namespace boost;
 using namespace boost::asio;
@@ -51,27 +51,27 @@ static std::vector<CSubNet> rpc_allow_subnets; //!< List of subnets to allow RPC
 static std::vector<boost::shared_ptr<ip::tcp::acceptor> > rpc_acceptors;
 
 void RPCTypeCheck(const UniValue& params,
-    const list<UniValue::VType>& typesExpected,
-    bool fAllowNull)
+                  const list<UniValue::VType>& typesExpected,
+                  bool fAllowNull)
 {
     unsigned int i = 0;
-    BOOST_FOREACH (UniValue::VType t, typesExpected) {
+    BOOST_FOREACH(UniValue::VType t, typesExpected) {
         if (params.size() <= i)
             break;
 
         const UniValue& v = params[i];
         if (!((v.type() == t) || (fAllowNull && (v.isNull())))) {
             string err = strprintf("Expected type %s, got %s",
-                uvTypeName(t), uvTypeName(v.type()));
+                                   uvTypeName(t), uvTypeName(v.type()));
             throw JSONRPCError(RPC_TYPE_ERROR, err);
         }
         i++;
     }
 }
 
-void RPCTypeCheck(const UniValue& o,
-    const map<string, UniValue::VType>& typesExpected,
-    bool fAllowNull)
+void RPCTypeCheckObj(const UniValue& o,
+                  const map<string, UniValue::VType>& typesExpected,
+                  bool fAllowNull)
 {
     BOOST_FOREACH(const PAIRTYPE(string, UniValue::VType)& t, typesExpected) {
         const UniValue& v = find_value(o, t.first);
@@ -80,7 +80,7 @@ void RPCTypeCheck(const UniValue& o,
 
         if (!((v.type() == t.second) || (fAllowNull && (v.isNull())))) {
             string err = strprintf("Expected type %s for %s, got %s",
-                uvTypeName(t.second), t.first, uvTypeName(v.type()));
+                                   uvTypeName(t.second), t.first, uvTypeName(v.type()));
             throw JSONRPCError(RPC_TYPE_ERROR, err);
         }
     }
@@ -1015,7 +1015,7 @@ void ServiceConnection(AcceptedConnection* conn)
     }
 }
 
-UniValue CRPCTable::execute(const std::string &strMethod, UniValue &params) const
+UniValue CRPCTable::execute(const std::string &strMethod, const UniValue &params) const
 {
     // Find method
     const CRPCCommand* pcmd = tableRPC[strMethod];

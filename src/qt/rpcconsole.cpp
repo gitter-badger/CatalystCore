@@ -17,9 +17,9 @@
 #include "rpcserver.h"
 #include "util.h"
 
-#include <openssl/crypto.h>
+#include <univalue.h>
 
-#include "univalue/univalue.h"
+#include <openssl/crypto.h>
 
 #ifdef ENABLE_WALLET
 #include <db_cxx.h>
@@ -195,15 +195,15 @@ void RPCExecutor::request(const QString& command)
             RPCConvertValues(args[0], std::vector<std::string>(args.begin() + 1, args.end())));
 
         // Format result reply
-        if (result.type() == isNull())
+        if (result.isNull())
             strPrint = "";
-        else if (result.type() == isStr())
+        else if (result.isStr())
             strPrint = result.get_str();
         else
             strPrint = result.write(2);
 
         emit reply(RPCConsole::CMD_REPLY, QString::fromStdString(strPrint));
-    } catch (UniValue& objError) {
+     } catch (UniValue& objError) {
         try // Nice formatting for standard-format error
         {
             int code = find_value(objError, "code").get_int();

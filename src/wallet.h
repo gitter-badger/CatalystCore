@@ -101,7 +101,7 @@ enum ZerocoinSpendStatus {
     ZCONDOMINIUM_FAILED_ACCUMULATOR_INITIALIZATION = 11,    // Failed to initialize witness
     ZCONDOMINIUM_INVALID_WITNESS = 12,                      // Spend coin transaction did not verify
     ZCONDOMINIUM_BAD_SERIALIZATION = 13,                    // Transaction verification failed
-    ZCONDOMINIUM_SPENT_USED_ZCONDOMINIUM = 14                       // Coin has already been spend
+    ZCONDOMINIUM_SPENT_USED_ZCONDOMINIUM = 14,              // Coin has already been spend
     ZCONDOMINIUM_TX_TOO_LARGE = 15                          // The transaction is larger than the max tx size
 };
 

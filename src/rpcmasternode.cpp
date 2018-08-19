@@ -14,7 +14,7 @@
 #include "rpcserver.h"
 #include "utilmoneystr.h"
 
-#include "univalue/univalue.h"
+#include <univalue.h>
 
 #include <boost/tokenizer.hpp>
 #include <fstream>
@@ -212,8 +212,11 @@ UniValue masternode(const UniValue& params, bool fHelp)
     }
 
     if (strCommand == "genkey") {
-        Array newParams(params.size() - 1);
-        std::copy(params.begin() + 1, params.end(), newParams.begin());
+        UniValue newParams(UniValue::VARR);
+        // forward params but skip command
+        for (unsigned int i = 1; i < params.size(); i++) {
+            newParams.push_back(params[i]);
+        }
         return createmasternodekey(newParams, fHelp);
     }
 

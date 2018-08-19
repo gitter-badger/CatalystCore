@@ -50,7 +50,7 @@ QT_TRANSLATE_NOOP("condominium-core", ""
 "Delete all wallet transactions and only recover those parts of the "
 "blockchain through -rescan on startup"),
 QT_TRANSLATE_NOOP("condominium-core", ""
-"Disable all Condominium specific functionality (Masternodes, Zerocoin, SwiftX, "
+"Disable all Condominium specific functionality (Masternodes, Obfuscation, SwiftX, "
 "Budgeting) (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", ""
 "Distributed under the MIT software license, see the accompanying file "
@@ -59,12 +59,10 @@ QT_TRANSLATE_NOOP("condominium-core", ""
 "Enable automatic wallet backups triggered after each zCDM minting (0-1, "
 "default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", ""
-"Enable SwiftX, show confirmations for locked transactions (bool, default: %s)"),
-QT_TRANSLATE_NOOP("condominium-core", ""
-"Enable automatic wallet backups triggered after each zCDM minting (0-1, "
-"default: %u)"),
-QT_TRANSLATE_NOOP("condominium-core", ""
 "Enable spork administration functionality with the appropriate private key."),
+QT_TRANSLATE_NOOP("condominium-core", ""
+"Enable SwiftX, show confirmations for locked transactions (bool, default: "
+"%s)"),
 QT_TRANSLATE_NOOP("condominium-core", ""
 "Enter regression test mode, which uses a special chain in which blocks can "
 "be solved instantly."),
@@ -162,8 +160,8 @@ QT_TRANSLATE_NOOP("condominium-core", ""
 QT_TRANSLATE_NOOP("condominium-core", ""
 "Support filtering of blocks and transaction with bloom filters (default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", ""
-"SwiftX requires inputs with at least 6 confirmations, you might need to wait "
-"a few minutes and try again."),
+"SwiftX requires inputs with at least 6 confirmations, you might need to "
+"wait a few minutes and try again."),
 QT_TRANSLATE_NOOP("condominium-core", ""
 "This is a pre-release test build - use at your own risk - do not use for "
 "staking or merchant applications!"),
@@ -303,7 +301,6 @@ QT_TRANSLATE_NOOP("condominium-core", "Error: Disk space is low!"),
 QT_TRANSLATE_NOOP("condominium-core", "Error: Unsupported argument -tor found, use -onion."),
 QT_TRANSLATE_NOOP("condominium-core", "Error: Wallet locked, unable to create transaction!"),
 QT_TRANSLATE_NOOP("condominium-core", "Error: You already have pending entries in the Obfuscation pool"),
-QT_TRANSLATE_NOOP("condominium-core", "Failed to calculate accumulator checkpoint"),
 QT_TRANSLATE_NOOP("condominium-core", "Failed to listen on any port. Use -listen=0 if you want this."),
 QT_TRANSLATE_NOOP("condominium-core", "Failed to read block index"),
 QT_TRANSLATE_NOOP("condominium-core", "Failed to read block"),
@@ -344,6 +341,7 @@ QT_TRANSLATE_NOOP("condominium-core", "Invalid script detected."),
 QT_TRANSLATE_NOOP("condominium-core", "Keep at most <n> unconnectable transactions in memory (default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", "Last Obfuscation was too recent."),
 QT_TRANSLATE_NOOP("condominium-core", "Last successful Obfuscation action was too recent."),
+QT_TRANSLATE_NOOP("condominium-core", "Less than 3 mints added, unable to create spend"),
 QT_TRANSLATE_NOOP("condominium-core", "Limit size of signature cache to <n> entries (default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", "Line: %d"),
 QT_TRANSLATE_NOOP("condominium-core", "Listen for JSON-RPC connections on <port> (default: %u or testnet: %u)"),
@@ -397,7 +395,6 @@ QT_TRANSLATE_NOOP("condominium-core", "Rebuild block chain index from current bl
 QT_TRANSLATE_NOOP("condominium-core", "Recalculating coin supply may take 30-60 minutes..."),
 QT_TRANSLATE_NOOP("condominium-core", "Recalculating supply statistics may take 30-60 minutes..."),
 QT_TRANSLATE_NOOP("condominium-core", "Receive and display P2P network alerts (default: %u)"),
-QT_TRANSLATE_NOOP("condominium-core", "Reindex the accumulator database"),
 QT_TRANSLATE_NOOP("condominium-core", "Relay and mine data carrier transactions (default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", "Relay non-P2SH multisig (default: %u)"),
 QT_TRANSLATE_NOOP("condominium-core", "Rescan the block chain for missing wallet transactions"),

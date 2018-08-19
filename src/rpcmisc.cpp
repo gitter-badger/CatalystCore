@@ -26,7 +26,7 @@
 
 #include <boost/assign/list_of.hpp>
 
-#include "univalue/univalue.h"
+#include <univalue.h>
 
 using namespace boost;
 using namespace boost::assign;
@@ -504,7 +504,7 @@ UniValue setmocktime(const UniValue& params, bool fHelp)
     RPCTypeCheck(params, boost::assign::list_of(UniValue::VNUM));
     SetMockTime(params[0].get_int64());
 
-    return return NullUniValue;
+    return NullUniValue;
 }
 
 #ifdef ENABLE_WALLET
