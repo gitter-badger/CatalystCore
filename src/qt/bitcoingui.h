@@ -271,7 +271,7 @@ private:
 
     /** Shows context menu with Display Unit options by the mouse coordinates */
     void onDisplayUnitsClicked(const QPoint& point);
-    /** Creates context menu, its actions, and condominiums up all the relevant signals for mouse events. */
+    /** Creates context menu, its actions, and catalysts up all the relevant signals for mouse events. */
     void createContextMenu();
 
 private slots:

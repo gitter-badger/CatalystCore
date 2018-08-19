@@ -10,7 +10,7 @@
 #define BITCOIN_MAIN_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/cdm-config.h"
+#include "config/aria-config.h"
 #endif
 
 #include "amount.h"
@@ -445,9 +445,9 @@ bool RemoveSerialFromDB(const CBigNum& bnSerial);
 int GetZerocoinStartHeight();
 bool IsTransactionInChain(uint256 txId, int& nHeightTx);
 bool IsBlockHashInChain(const uint256& hashBlock);
-void RecalculateZCONDOMINIUMSpent();
-void RecalculateZCONDOMINIUMMinted();
-bool RecalculateCONDOMINIUMSupply(int nHeightStart);
+void RecalculateZAriASpent();
+void RecalculateZAriAMinted();
+bool RecalculateAriASupply(int nHeightStart);
 bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError);
 
 

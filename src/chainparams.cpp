@@ -100,22 +100,22 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xc9;
-        pchMessageStart[1] = 0xba;
-        pchMessageStart[2] = 0x8b;
-        pchMessageStart[3] = 0x38;
-        vAlertPubKey = ParseHex("0370a5a13eb54a2e37bd896127737138884fcc5cf7231fdf9a0e1c5ca61f023c36");
-        nDefaultPort = 33588;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; //20 Condominium starting difficulty is 1 / 2^12
+        pchMessageStart[0] = 0x34;
+        pchMessageStart[1] = 0x48;
+        pchMessageStart[2] = 0x77;
+        pchMessageStart[3] = 0x69;
+        vAlertPubKey = ParseHex("04ac59e6f5c57f0967fda2225d2d0897a914a23bc1dbb97a7c0584c771cc4980513b36a0d969ddc75d2e85850499a52e1f5f25aae49df20d1b5bb38f40bf00193f");
+        nDefaultPort = 14671;
+        bnProofOfWorkLimit = ~uint256(0) >> 20; //20 Catalyst starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 30; // Condominium: 0.5 minutes
-        nTargetSpacingSlowLaunch = 10 * 60;  // Condominium: 10 minutes (Slow launch - Block 288)
-        nTargetSpacing = 1 * 60;  // Condominium: 60 Seconds
+        nTargetTimespan = 1 * 30; // Catalyst: 0.5 minutes
+        nTargetSpacingSlowLaunch = 10 * 60;  // Catalyst: 10 minutes (Slow launch - Block 288)
+        nTargetSpacing = 1 * 60;  // Catalyst: 60 Seconds
         nMaturity = 49;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 3500000000 * COIN;
@@ -143,32 +143,34 @@ public:
             genesis.hashMerkleRoot = 90d274dca16659997d8f5fc9644127d260087d4a39ca61ba9b3334482aa8c55d
 
          */
-        const char* pszTimestamp = "Condominium new blockchain is here";
+        const char* pszTimestamp = "AriA impelementation masternodes to Catalyst";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("042292b1f401860eea99e1a8a103effbd7e1c013a59a1a3a0c91c9d1997a0bc6f338567278c11344802838c107055bf7c1641eaed61e879245c255a4f5be5746fc") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0463ea8078d98ee42790fdd20b278e6d708f73b450e3593ec362dec90ef15361c66c3d2e468ec37ddeb7b422eb31f063d3c456ea75c14b2e8c05cbd7682a796e7c") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1527974340;
+        genesis.nTime = 1534655078;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 236551;
+        genesis.nNonce = 550000;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000003f46e57c04e31374710022a6685abea12cb99960dfe96eaaa430edc670f"));
-        assert(genesis.hashMerkleRoot == uint256("0x90d274dca16659997d8f5fc9644127d260087d4a39ca61ba9b3334482aa8c55d"));
+        //assert(hashGenesisBlock == uint256("0x000003f46e57c04e31374710022a6685abea12cb99960dfe96eaaa430edc670f"));
+        //assert(genesis.hashMerkleRoot == uint256("0x90d274dca16659997d8f5fc9644127d260087d4a39ca61ba9b3334482aa8c55d"));
 
-    		  vSeeds.push_back(CDNSSeedData("seed1.cdmcoin.org", "seed1.cdmcoin.org"));             // seed1
-          vSeeds.push_back(CDNSSeedData("seed2.cdmcoin.org", "seed2.cdmcoin.org"));             // seed2
+    	//vSeeds.push_back(CDNSSeedData("seed1.cdmcoin.org", "seed1.cdmcoin.org"));             // seed1
+        //vSeeds.push_back(CDNSSeedData("seed2.cdmcoin.org", "seed2.cdmcoin.org"));             // seed2
 
+        vFixedSeeds.clear();
+        vSeeds.clear();
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 28); // C
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 138); // x
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 88); // c
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 83); // a
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 127); // t
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x73).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md 1135
@@ -220,18 +222,18 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x43;
-        pchMessageStart[1] = 0x76;
-        pchMessageStart[2] = 0x65;
-        pchMessageStart[3] = 0xba;
-        vAlertPubKey = ParseHex("042292b1f401860eea99e1a8a103effbd7e1c013a59a1a3a0c91c9d1997a0bc6f338567278c11344802838c107055bf7c1641eaed61e879245c255a4f5be5746fc");
-        nDefaultPort = 51434;
+        pchMessageStart[0] = 0x3f;
+        pchMessageStart[1] = 0x14;
+        pchMessageStart[2] = 0x1a;
+        pchMessageStart[3] = 0x81;
+        vAlertPubKey = ParseHex("0463ea8078d98ee42790fdd20b278e6d708f73b450e3593ec362dec90ef15361c66c3d2e468ec37ddeb7b422eb31f063d3c456ea75c14b2e8c05cbd7682a796e7c");
+        nDefaultPort = 15671;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Condominium: 1 day
-        nTargetSpacing = 1 * 60;  // Condominium: 1 minute
+        nTargetTimespan = 1 * 60; // Catalyst: 1 day
+        nTargetSpacing = 1 * 60;  // Catalyst: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -259,14 +261,14 @@ public:
         // vSeeds.push_back(CDNSSeedData("45.77.176.204", "45.76.226.204"));       // Single node address
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet condominium addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet condominium script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet catalyst addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet catalyst script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet condominium BIP32 pubkeys start with 'DRKV'
+        // Testnet catalyst BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet condominium BIP32 prvkeys start with 'DRKP'
+        // Testnet catalyst BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet condominium BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet catalyst BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -304,17 +306,17 @@ public:
         networkID = CBaseChainParams::REGTEST;
         strNetworkID = "regtest";
         strNetworkID = "regtest";
-        pchMessageStart[0] = 0x69;
-        pchMessageStart[1] = 0xcf;
-        pchMessageStart[2] = 0x7e;
-        pchMessageStart[3] = 0xac;
+        pchMessageStart[0] = 0x5b;
+        pchMessageStart[1] = 0x41;
+        pchMessageStart[2] = 0x10;
+        pchMessageStart[3] = 0x83;
         nSubsidyHalvingInterval = 150;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Condominium: 1 day
-        nTargetSpacing = 1 * 60;        // Condominium: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // Catalyst: 1 day
+        nTargetSpacing = 1 * 60;        // Catalyst: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1515524400;
         genesis.nBits = 0x1e0ffff0;

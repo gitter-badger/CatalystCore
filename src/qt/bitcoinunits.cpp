@@ -19,18 +19,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(CONDOMINIUM);
-    unitlist.append(mCDM);
-    unitlist.append(uCDM);
+    unitlist.append(XAT);
+    unitlist.append(mXAT);
+    unitlist.append(uXAT);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case CONDOMINIUM:
-    case mCDM:
-    case uCDM:
+    case XAT:
+    case mXAT:
+    case uXAT:
         return true;
     default:
         return false;
@@ -40,12 +40,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case CONDOMINIUM:
-        return QString("cdm");
-    case mCDM:
-        return QString("mcdm");
-    case uCDM:
-        return QString::fromUtf8("ucdm");
+    case XAT:
+        return QString("xat");
+    case mXAT:
+        return QString("mxat");
+    case uXAT:
+        return QString::fromUtf8("uxat");
     default:
         return QString("???");
     }
@@ -55,23 +55,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case CONDOMINIUM:
-            return QString("CDM");
-        case mCDM:
-            return QString("mCDM");
-        case uCDM:
-            return QString::fromUtf8("μCDM");
+        case XAT:
+            return QString("XAT");
+        case mXAT:
+            return QString("mXAT");
+        case uXAT:
+            return QString::fromUtf8("μXAT");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case CONDOMINIUM:
-            return QString("tCDM");
-        case mCDM:
-            return QString("mtCDM");
-        case uCDM:
-            return QString::fromUtf8("μtCDM");
+        case XAT:
+            return QString("tXAT");
+        case mXAT:
+            return QString("mtXAT");
+        case uXAT:
+            return QString::fromUtf8("μtXAT");
         default:
             return QString("???");
         }
@@ -82,23 +82,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case CONDOMINIUM:
-            return QString("CONDOMINIUM");
-        case mCDM:
-            return QString("Milli-CONDOMINIUM (1 / 1" THIN_SP_UTF8 "000)");
-        case uCDM:
-            return QString("Micro-CONDOMINIUM (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case XAT:
+            return QString("XAT");
+        case mXAT:
+            return QString("Milli-XAT (1 / 1" THIN_SP_UTF8 "000)");
+        case uXAT:
+            return QString("Micro-XAT (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case CONDOMINIUM:
-            return QString("TestCDMs");
-        case mCDM:
-            return QString("Milli-TestCDM (1 / 1" THIN_SP_UTF8 "000)");
-        case uCDM:
-            return QString("Micro-TestCDM (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case XAT:
+            return QString("TestXATs");
+        case mXAT:
+            return QString("Milli-TestXAT (1 / 1" THIN_SP_UTF8 "000)");
+        case uXAT:
+            return QString("Micro-TestXAT (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -108,11 +108,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case CONDOMINIUM:
+    case XAT:
         return 100000000;
-    case mCDM:
+    case mXAT:
         return 100000;
-    case uCDM:
+    case uXAT:
         return 100;
     default:
         return 100000000;
@@ -122,11 +122,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case CONDOMINIUM:
+    case XAT:
         return 8;
-    case mCDM:
+    case mXAT:
         return 5;
-    case uCDM:
+    case uXAT:
         return 2;
     default:
         return 0;

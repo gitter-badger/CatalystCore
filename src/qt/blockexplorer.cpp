@@ -44,7 +44,7 @@ static std::string ValueToString(CAmount nValue, bool AllowNegative = false)
     if (nValue < 0 && !AllowNegative)
         return "<span>" + _("unknown") + "</span>";
 
-    QString Str = BitcoinUnits::formatWithUnit(BitcoinUnits::CONDOMINIUM, nValue);
+    QString Str = BitcoinUnits::formatWithUnit(BitcoinUnits::XAT, nValue);
     if (AllowNegative && nValue > 0)
         Str = '+' + Str;
     return std::string("<span>") + Str.toUtf8().data() + "</span>";
@@ -472,7 +472,7 @@ void BlockExplorer::showEvent(QShowEvent*)
 
         if (!GetBoolArg("-txindex", false)) {
             QString Warning = tr("Not all transactions will be shown. To view all transactions you need to set txindex=1 in the configuration file (condominium.conf).");
-            QMessageBox::warning(this, "Condominium Core Blockchain Explorer", Warning, QMessageBox::Ok);
+            QMessageBox::warning(this, "Catalyst Core Blockchain Explorer", Warning, QMessageBox::Ok);
         }
     }
 }

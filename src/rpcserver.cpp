@@ -238,10 +238,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Condominium server.");
+            "\nStop Catalyst server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Condominium server stopping";
+    return "Catalyst server stopping";
 }
 
 
@@ -318,36 +318,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Condominium features */
-        {"condominium", "masternode", &masternode, true, true, false},
-        {"condominium", "listmasternodes", &listmasternodes, true, true, false},
-        {"condominium", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"condominium", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"condominium", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"condominium", "masternodedebug", &masternodedebug, true, true, false},
-        {"condominium", "startmasternode", &startmasternode, true, true, false},
-        {"condominium", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"condominium", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"condominium", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"condominium", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"condominium", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"condominium", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"condominium", "mnbudget", &mnbudget, true, true, false},
-        {"condominium", "preparebudget", &preparebudget, true, true, false},
-        {"condominium", "submitbudget", &submitbudget, true, true, false},
-        {"condominium", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"condominium", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"condominium", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"condominium", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"condominium", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"condominium", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"condominium", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"condominium", "checkbudgets", &checkbudgets, true, true, false},
-        {"condominium", "mnsync", &mnsync, true, true, false},
-        {"condominium", "spork", &spork, true, true, false},
-        {"condominium", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Catalyst features */
+        {"catalyst", "masternode", &masternode, true, true, false},
+        {"catalyst", "listmasternodes", &listmasternodes, true, true, false},
+        {"catalyst", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"catalyst", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"catalyst", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"catalyst", "masternodedebug", &masternodedebug, true, true, false},
+        {"catalyst", "startmasternode", &startmasternode, true, true, false},
+        {"catalyst", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"catalyst", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"catalyst", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"catalyst", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"catalyst", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"catalyst", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"catalyst", "mnbudget", &mnbudget, true, true, false},
+        {"catalyst", "preparebudget", &preparebudget, true, true, false},
+        {"catalyst", "submitbudget", &submitbudget, true, true, false},
+        {"catalyst", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"catalyst", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"catalyst", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"catalyst", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"catalyst", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"catalyst", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"catalyst", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"catalyst", "checkbudgets", &checkbudgets, true, true, false},
+        {"catalyst", "mnsync", &mnsync, true, true, false},
+        {"catalyst", "spork", &spork, true, true, false},
+        {"catalyst", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"condominium", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"catalyst", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -627,16 +627,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use condominiumd, or the -server option to condominium-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use catalystd, or the -server option to catalyst-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=condominiumrpc\n"
+                                               "rpcuser=catalystrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"Condominium Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"Catalyst Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1087,7 +1087,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> condominium-cli " + methodname + " " + args + "\n";
+    return "> catalyst-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

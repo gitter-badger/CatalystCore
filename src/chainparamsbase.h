@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between condominium-cli and condominiumd)
- * of a given instance of the Condominium system.
+ * CBaseChainParams defines the base parameters (shared between catalyst-cli and catalystd)
+ * of a given instance of the Catalyst system.
  */
 class CBaseChainParams
 {

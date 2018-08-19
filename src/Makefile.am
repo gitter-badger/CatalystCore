@@ -73,15 +73,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += cdmd
+  bin_PROGRAMS += catalystd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += cdm-cli cdm-tx
+  bin_PROGRAMS += catalyst-cli catalyst-tx
 endif
 
 .PHONY: FORCE
-# cdm core #
+# catalyst core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   accumulators.h \
@@ -186,7 +186,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between cdmd and cdm-qt
+# server: shared between catalystd and catalyst-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -231,7 +231,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between cdmd and cdm-qt, but only linked
+# wallet: shared between catalystd and catalyst-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -343,7 +343,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between cdmd, and cdm-qt and non-server tools
+# common: shared between catalystd, and catalyst-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   accumulators.cpp \
@@ -403,7 +403,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between cdm-cli and cdm-qt
+# cli: shared between catalyst-cli and catalyst-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -413,7 +413,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-cdmd_LDADD = \
+catalystd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -425,26 +425,26 @@ cdmd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-cdmd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+catalystd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-cdmd_LDADD += libbitcoin_wallet.a
+catalystd_LDADD += libbitcoin_wallet.a
 endif
-cdmd_SOURCES = cdmd.cpp
+catalystd_SOURCES = catalystd.cpp
 #
 
 if TARGET_WINDOWS
-cdmd_SOURCES += cdmd-res.rc
+catalystd_SOURCES += catalystd-res.rc
 endif
 
-cdmd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-cdmd_CPPFLAGS = $(BITCOIN_INCLUDES)
-cdmd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+catalystd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+catalystd_CPPFLAGS = $(BITCOIN_INCLUDES)
+catalystd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# cdm-cli binary #
-cdm_cli_LDADD = \
+# catalyst-cli binary #
+catalyst_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -453,14 +453,14 @@ cdm_cli_LDADD = \
   $(CRYPTO_LIBS) \
   $(EVENT_LIBS)
 
-cdm_cli_SOURCES = \
-  cdm-cli.cpp
+catalyst_cli_SOURCES = \
+  catalyst-cli.cpp
 
-cdm_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+catalyst_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 #
 
-# cdm-tx binary #
-cdm_tx_LDADD = \
+# catalyst-tx binary #
+catalyst_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -470,15 +470,15 @@ cdm_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-cdm_tx_SOURCES = cdm-tx.cpp
-cdm_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+catalyst_tx_SOURCES = catalyst-tx.cpp
+catalyst_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-cdm_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+catalyst_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-cdm_cli_SOURCES += cdm-cli-res.rc
+catalyst_cli_SOURCES += catalyst-cli-res.rc
 endif
-cdm_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+catalyst_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

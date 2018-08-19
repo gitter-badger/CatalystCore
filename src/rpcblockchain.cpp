@@ -90,12 +90,12 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool tx
 
     result.push_back(Pair("moneysupply",ValueFromAmount(blockindex->nMoneySupply)));
 
-    UniValue zcondominiumObj(UniValue::VOBJ);
+    UniValue zAriAObj(UniValue::VOBJ);
     for (auto denom : libzerocoin::zerocoinDenomList) {
-        zcondominiumObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
+        zAriAObj.push_back(Pair(to_string(denom), ValueFromAmount(blockindex->mapZerocoinSupply.at(denom) * (denom*COIN))));
     }
-    zcondominiumObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
-    result.push_back(Pair("zCDMsupply", zcondominiumObj));
+    zAriAObj.push_back(Pair("total", ValueFromAmount(blockindex->GetZerocoinSupply())));
+    result.push_back(Pair("zXATsupply", zAriAObj));
 
     return result;
 }
@@ -175,7 +175,7 @@ UniValue getrawmempool(const UniValue& params, bool fHelp)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in condominium\n"
+            "    \"fee\" : n,              (numeric) transaction fee in catalyst\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
             "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
@@ -281,17 +281,17 @@ UniValue getblock(const UniValue& params, bool fHelp)
             "  \"previousblockhash\" : \"hash\",  (string) The hash of the previous block\n"
             "  \"nextblockhash\" : \"hash\"       (string) The hash of the next block\n"
             "  \"moneysupply\" : \"supply\"       (numeric) The money supply when this block was added to the blockchain\n"
-            "  \"zCDMsupply\" :\n"
+            "  \"zXATsupply\" :\n"
             "  {\n"
-            "     \"1\" : n,            (numeric) supply of 1 zCDM denomination\n"
-            "     \"5\" : n,            (numeric) supply of 5 zCDM denomination\n"
-            "     \"10\" : n,           (numeric) supply of 10 zCDM denomination\n"
-            "     \"50\" : n,           (numeric) supply of 50 zCDM denomination\n"
-            "     \"100\" : n,          (numeric) supply of 100 zCDM denomination\n"
-            "     \"500\" : n,          (numeric) supply of 500 zCDM denomination\n"
-            "     \"1000\" : n,         (numeric) supply of 1000 zCDM denomination\n"
-            "     \"5000\" : n,         (numeric) supply of 5000 zCDM denomination\n"
-            "     \"total\" : n,        (numeric) The total supply of all zCDM denominations\n"
+            "     \"1\" : n,            (numeric) supply of 1 zXAT denomination\n"
+            "     \"5\" : n,            (numeric) supply of 5 zXAT denomination\n"
+            "     \"10\" : n,           (numeric) supply of 10 zXAT denomination\n"
+            "     \"50\" : n,           (numeric) supply of 50 zXAT denomination\n"
+            "     \"100\" : n,          (numeric) supply of 100 zXAT denomination\n"
+            "     \"500\" : n,          (numeric) supply of 500 zXAT denomination\n"
+            "     \"1000\" : n,         (numeric) supply of 1000 zXAT denomination\n"
+            "     \"5000\" : n,         (numeric) supply of 5000 zXAT denomination\n"
+            "     \"total\" : n,        (numeric) The total supply of all zXAT denominations\n"
             "  }\n"
             "}\n"
             "\nResult (for verbose=false):\n"
@@ -431,8 +431,8 @@ UniValue gettxout(const UniValue& params, bool fHelp)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of condominium addresses\n"
-            "     \"condominiumaddress\"   	 	(string) condominium address\n"
+            "     \"addresses\" : [          (array of string) array of catalyst addresses\n"
+            "     \"catalystaddress\"   	 	(string) catalyst address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
