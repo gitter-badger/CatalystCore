@@ -535,7 +535,7 @@ int main(int argc, char* argv[])
     QTextCodec::setCodecForCStrings(QTextCodec::codecForTr());
 #endif
 
-    Q_INIT_RESOURCE(catalyst_locale);
+    //Q_INIT_RESOURCE(catalyst_locale); //this on next libboost bug
     Q_INIT_RESOURCE(catalyst);
 
     BitcoinApplication app(argc, argv);

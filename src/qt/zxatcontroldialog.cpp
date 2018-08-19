@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zcatalystcontroldialog.h"
-#include "ui_zcatalystcontroldialog.h"
+#include "zxatcontroldialog.h"
+#include "ui_zxatcontroldialog.h"
 
 #include "main.h"
 #include "walletmodel.h"
