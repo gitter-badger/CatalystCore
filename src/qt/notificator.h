@@ -6,7 +6,7 @@
 #define BITCOIN_QT_NOTIFICATOR_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/catalyst-config.h"
+#include "config/aria-config.h"
 #endif
 
 #include <QIcon>
