@@ -169,7 +169,7 @@ UniValue addnode(const UniValue& params, bool fHelp)
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:33588\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:33588\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.1.3:14671\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:14671\", \"onetry\""));
 
     string strNode = params[0].get_str();
 
@@ -213,11 +213,11 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "[\n"
             "  {\n"
-            "    \"addednode\" : \"192.168.0.201\",   (string) The node ip address\n"
+            "    \"addednode\" : \"192.168.1.201\",   (string) The node ip address\n"
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:33588\",  (string) The catalyst server host and port\n"
+            "         \"address\" : \"192.168.1.201:14671\",  (string) The catalyst server host and port\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "       ,...\n"
