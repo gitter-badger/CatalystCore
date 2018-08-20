@@ -190,9 +190,9 @@ public:
 
         nPoolMaxTransactions = 3;
         //strSporkKey = "0459eede7626441f7802af2736cb3a4aeb3e1f95070cde39d068a4f16525ee8fdd3c075f29f9e115aeb91952239194aa6ac19765574fed8a0d7f174f2b450e9630";
-		    strSporkKey = "03d1a6656a67f078d52791b51ea8e246b3b542b22ebaa15e55c0ba3453b74e01f5";
-        strObfuscationPoolDummyAddress = "CaJAo1A7gPBftYSHywtBN7XRfHTWWQeJm4";
-        nStartMasternodePayments = 1527974340 + 6000; //Wed, 25 Jun 2014 20:36:16 GMT
+		    strSporkKey = "5HEA6zViM1JTJgtMwmBmfTv3e67PVpddK27T1e35euPumbSuhHS";
+        strObfuscationPoolDummyAddress = "CPq9HYgQP6rmQvTxB4HayrvgBU3khMRQim";
+        nStartMasternodePayments = 1534775122 + 6000; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
         zerocoinModulus = "0xc95577b6dce0049b0a20c779af38079355abadde1a1d80c353f6cb697a7ae5a087bad39caa5798478551d0f9d91e6267716506f32412de1d19d17588765eb9502b85c6a18abdb05791cfd8b734e960281193705eeece210920cc922b3af3ceb178bf12c22eb565d5767fbf19545639be8953c2c38ffad41f3371e4aac750ac2d7bd614b3faabb453081d5d88fdbb803657a980bc93707e4b14233a2358c97763bf28f7c933206071477e8b371f229bc9ce7d6ef0ed7163aa5dfe13bc15f7816348b328fa2c1e69d5c88f7b94cee7829d56d1842d77d7bb8692e9fc7b7db059836500de8d57eb43c345feb58671503b932829112941367996b03871300f25efb5";
